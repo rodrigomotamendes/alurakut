@@ -1,4 +1,6 @@
 import React from 'react';
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
 import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box';
 import {
@@ -51,8 +53,8 @@ function ProfileRelationsBox(propriedades) {
   )
 }
 
-export default function Home() {
-  const githubUser = 'rodrigomotamendes';
+export default function Home(props) {
+  const usuarioAleatorio = props.githubUser;
   const [comunidades, setComunidades] = React.useState([]);
   // const comunidades = ['Alurakut'];
   const pessoasFavoritas = [
@@ -104,11 +106,13 @@ export default function Home() {
 
   return (
     <>
-      <AlurakutMenu githubUser={githubUser} />
+      <AlurakutMenu 
+      githubUser={usuarioAleatorio} 
+      />
       <MainGrid>
 
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
-          <ProfileSidebar githubUser={githubUser} />
+          <ProfileSidebar githubUser={usuarioAleatorio} />
         </div>
 
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
@@ -132,7 +136,7 @@ export default function Home() {
               const comunidade = {
                 title: dadosDoForm.get('title'),
                 imageUrl: dadosDoForm.get('image'),
-                creatorSlug: githubUser,
+                creatorSlug: usuarioAleatorio,
               }
 
               fetch('/api/comunidades', {
@@ -223,4 +227,33 @@ export default function Home() {
       </MainGrid>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN;
+  const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+      Authorization: token
+    }
+  })
+  .then((resposta) => resposta.json())
+
+  console.log('isAuthenticated', isAuthenticated);
+
+  if(!isAuthenticated) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+
+  const { githubUser } = jwt.decode(token);
+  return {
+    props: {
+      githubUser
+    }
+  }
 }
