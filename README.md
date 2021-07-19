@@ -1,84 +1,64 @@
-# Example app with styled-components
+<h1 align="center"> Imersão React da Alura - 3ª edição </h1>
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+<p align="center">
+ <img src="https://jogoveio.com.br/wp-content/uploads/2020/10/especial-logo-alura.png" width="280" alt="Logo da Alura">
+</p>
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+<p align="center">
+ <img src="https://i.imgur.com/LfzOr5g.png" alt="accessibility text">
+</p>
 
-## Preview
+<h2>🚀 Descrição</h2>
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+<p>Imersão React da Alura - 3ª edição. Realizado entre os dias 12 a 16/07/21, onde foi criado um projeto baseado no antigo Orkut utilizando ReactJs, NextJs e StyledComponents.</p>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
+<h2>🛠 Tecnologias</h2>
 
-## Deploy your own
+<p> Tecnologias utilizadas para a criação da aplicação</p>
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+<u>
+ <li>
+  <a href='https://pt-br.reactjs.org/' target="_blank" rel="nofollow">ReactJs</a>
+ </li>
+ <li>
+  <a href='https://nextjs.org/' target="_blank" rel="nofollow">NextJs</a>
+ </li>
+ <li>
+  <a href='https://styled-components.com/' target="_blank" rel="nofollow">StyledComponents</a>
+ </li>
+</u>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+<h2>🔥 Para Clonar o repositório</h2>
 
-## How to use
+<p>No terminal execute o seguinte código: </p>
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+<div class="highlight highlight-source-shell">
+ <pre>
+ git clone https://github.com/rodrigomotamendes/alurakut
 
-```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
-```
+</pre>
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+</div>
 
-### Try it on CodeSandbox
+<h2>🔥 Getting Started</h2>
 
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
+<p>Para rodar o servidor do projeto em local: </p>
 
-### Notes
+<div class="highlight highlight-source-shell">
+<pre>
+npm run dev
 
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
+<span class="pl-c">
+ <span class="pl-c"># or</span>
+ 
+ </span>
 
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
+yarn dev
+</pre>
+</div>
 
-**components/StyledLink.js**
+<p>Abrir o seu navegador na url: <a href='http://localhost:3000' rel="nofollow">http://localhost:3000</a></p>
 
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
+<h2>💜 Autor</h2>
 
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
-
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: #40a9ff;
-  }
-
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
-```
-
-**pages/index.js**
-
-```javascript
-import StyledLink from '../components/StyledLink'
-
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
-
-</details>
+<p>Projeto criado por <a href='https://www.linkedin.com/in/rodrigo-mota-mendes/' rel="nofollow">rodrigomotamendes</a></p>
